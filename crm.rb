@@ -1,5 +1,4 @@
-
-require_relative '/contact'
+require_relative 'contact'
 #puts me = Contact.new("Sam")
 
 class CRM
@@ -12,14 +11,6 @@ class CRM
 puts crm_app = CRM.new("Address Book")
 
 
-  def main_menu
-    while true
-      print_main_menu
-      #user_selected = gets.to_i
-      call_option (user_selected)
-    end
-  end
-
   def print_main_menu
     puts "Please select an option by typing one of the below:"
     puts  "[1] Add"
@@ -30,8 +21,10 @@ puts crm_app = CRM.new("Address Book")
     puts  "[6] Exit"
   end
 
-  def call_option
-    crm_app.print_main_menu
+
+
+
+  def call_option(name)
     user_selected = gets.to_i
   case user_selected
     when 1 then add_new_contact
@@ -39,32 +32,51 @@ puts crm_app = CRM.new("Address Book")
     when 3 then delete_contact
     when 4 then display_all_contacts
     when 5 then search_by_attribute
-    when 6 then exit(false)
+    when 6 then exit
     end
   end
-crm_app.print_main_menu
+
 
   def add_new_contact
-    print "New Contact: "
+    print "New Contact:
+    "
 
     print "First Name: "
-    first_name = gets.chomp
+    @first_name = first_name = gets.chomp
 
     print "Last Name: "
-    last_name = gets.chomp
+      @last_name = last_name = gets.chomp
 
     print "Email: "
-    email = gets.chomp
+      @email = email = gets.chomp
 
     print "Note: "
+    @note = note = gets.chomp
+    Contact.create(first_name, last_name, email, note)
 
-    note = gets.chomp
-  Contact.create(first_name, last_name, email, note)
   end
 
-=begin  def modify_existing_contact(mod_contact)
+ def modify_existing_contact(mod_contact)
         print "Which contact would you like to modify"
-        mod_contact = gets.to_i
+        @@contacts.each do |contact|
+        mod_contact = gets.chomp
+        if @@contacts.include?(mod_contact)
+          return contact.each do |k, v|
+          else
+            puts "Could not find contact"
+          end
+            if k == last_name
+              puts "What would you like to change #{contact}'s last name to?"
+              @last_name = last_name = gets.chomp
+              return contact
+
+
+        end
+      end
+      end
+
+
+        endcontact delete_if
         print "Do you want to modify contact's:
          [1]first name
          [2]last name
@@ -91,7 +103,7 @@ crm_app.print_main_menu
   end
 =end
   def delete_contact
-
+    print "test"
   end
 
   def display_all_contacts
@@ -101,4 +113,13 @@ crm_app.print_main_menu
   def search_by_attribute
 
   end
+  def main_menu
+    while true
+      print_main_menu
+      user_selected = gets.to_i
+      call_option(user_selected)
+    end
+  end
+crm_app.main_menu
+
 end

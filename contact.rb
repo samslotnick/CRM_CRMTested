@@ -35,7 +35,7 @@ class Contact
   end
   end
   def update (note, v)
-    @note = v  
+    @note = v
 
   end
 
@@ -75,13 +75,14 @@ class Contact
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
   def delete
-    @@contacts.delete_if { |contact| contact == first_name || last_name}
+    @@contacts.delete_if { |contact| contact == first_name || contact = last_name }
   end
 
   # Feel free to add other methods here, if you need them.
 #puts me = Contact.new("Sam")
 
 end
+contact = Contact.new('Betty', 'Maker', 'bettymakes@gmail.com', 'Loves Pokemon')
 # This method should allow you to specify
 # 1. which of the contact's attributes you want to update
 # 2. the new value for that attribute

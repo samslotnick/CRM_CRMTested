@@ -1,16 +1,18 @@
-require_relative 'contact'
-#puts me = Contact.new("Sam")
 
-class CRM
-  attr_accessor :name
+require_relative 'contact'
+
+
+class CRM < Contact
+
+  attr_accessor :name, :Contact
   def initialize(name)
     @name = name
     puts "This CRM is called " + name
-  end
+
+end
+
 
 puts crm_app = CRM.new("Address Book")
-
-
   def print_main_menu
     puts "Please select an option by typing one of the below:"
     puts  "[1] Add"
@@ -21,7 +23,8 @@ puts crm_app = CRM.new("Address Book")
     puts  "[6] Exit"
   end
 
-
+  puts  Contact.create('Betty', 'Maker', 'bettymakes@gmail.com', 'Loves Pokemon')
+  puts Contact.create('Sam', 'Slotnick', '123', ':)')
 
 
   def call_option(name)
@@ -42,41 +45,66 @@ puts crm_app = CRM.new("Address Book")
     "
 
     print "First Name: "
-    @first_name = first_name = gets.chomp
+    @first_name = first_name
+    first_name = gets.chomp
 
     print "Last Name: "
-      @last_name = last_name = gets.chomp
+      @last_name = last_name
+      last_name = gets.chomp
 
     print "Email: "
-      @email = email = gets.chomp
+    @email = email
+     email = gets.chomp
 
     print "Note: "
-    @note = note = gets.chomp
-    Contact.create(first_name, last_name, email, note)
+      @note = note
+      note = gets.chomp
+
+    puts Contact.create(first_name, last_name, email, note)
+
 
   end
 
- def modify_existing_contact(mod_contact)
-        print "Which contact would you like to modify"
-        @@contacts.each do |contact|
-        mod_contact = gets.chomp
-        if @@contacts.include?(mod_contact)
-          return contact.each do |k, v|
-          else
-            puts "Could not find contact"
-          end
-            if k == last_name
-              puts "What would you like to change #{contact}'s last name to?"
-              @last_name = last_name = gets.chomp
-              return contact
+ def modify_existing_contact
+
+   print "Enter what you would like to enter in the Contact's note sections"
+    input_mod = gets.chomp
+          return input_mod.update
 
 
-        end
-      end
-      end
+
+end
 
 
-        endcontact delete_if
+      #    @@contacts.each do |contact|
+      #   if @@contacts.include?(mod_contact)
+      #     puts contact
+      #     else
+      #       puts "Could not find contact"
+      #        end
+      #   end
+
+        #  if k == last_name
+        #    puts "What would you like to change #{contact}'s last name to?"
+        #       @last_name = last_name = gets.chomp
+        #       return contact
+
+  #     end
+  #   end
+
+
+
+
+
+
+
+
+
+  #
+
+
+
+=begin contact delete_if
         print "Do you want to modify contact's:
          [1]first name
          [2]last name
@@ -103,15 +131,32 @@ puts crm_app = CRM.new("Address Book")
   end
 =end
   def delete_contact
-    print "test"
+    puts "Name of contact to delete"
+    input = gets.chomp
+    @@contacts.each do |contact|
+    #contact =
+    contact = contact.inspect
+    if contact.include?(input) == true
+    puts contact.delete(input)
+    #  puts contact.pop
+    end
+
+  end
   end
 
   def display_all_contacts
 
+  puts @@contacts.to_s
+
   end
 
   def search_by_attribute
-
+    puts "k:"
+    k = gets.chomp
+    puts "v:"
+    v = gets.chomp
+    return Contact.find_by(k,v)
+    puts @contact
   end
   def main_menu
     while true

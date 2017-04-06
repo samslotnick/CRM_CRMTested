@@ -4,7 +4,7 @@ require_relative 'contact'
 
 class CRM < Contact
 
-  attr_accessor :name, :Contact
+  attr_accessor :name, :last_name, :email, :contacts
   def initialize(name)
     @name = name
     puts "This CRM is called " + name
@@ -25,7 +25,8 @@ puts crm_app = CRM.new("Address Book")
 
   puts  Contact.create('Betty', 'Maker', 'bettymakes@gmail.com', 'Loves Pokemon')
   puts Contact.create('Sam', 'Slotnick', '123', ':)')
-
+  puts Contact.create('Joe', 'Sixpack', '789', 'notejs')
+  puts Contact.create('Guy', 'Person', '67', 'notegp')
 
   def call_option(name)
     user_selected = gets.to_i
@@ -66,10 +67,14 @@ puts crm_app = CRM.new("Address Book")
   end
 
  def modify_existing_contact
-
+   puts display_all_contacts
    print "Enter what you would like to enter in the Contact's note sections"
+   mod_input = gets.to_i
+   puts @@contacts.fetch(mod_input)
+
+
     input_mod = gets.chomp
-          return input_mod.update
+
 
 
 
@@ -131,18 +136,36 @@ end
   end
 =end
   def delete_contact
-    puts "Name of contact to delete"
-    input = gets.chomp
-    @@contacts.each do |contact|
-    #contact =
-    contact = contact.inspect
-    if contact.include?(input) == true
-    puts contact.delete(input)
-    #  puts contact.pop
+    puts display_all_contacts
+    puts "Enter of ID # of contact to delete"
+    input = gets.to_i
+    puts @@contacts.delete_at(input)
+    #@@contacts.each do |contact|
+    #  contact.each do |k, v|
+    #    print "#{k}, #{v}"
+  #    end
     end
+    #@id = gets.to_i
+    #puts @@contacts.delete_at(id)
 
-  end
-  end
+
+    #puts @@contacts.delete_if {|first_name, last_name| first_name || last_name == input}
+
+        #contact = contact.inspect
+        #  del_contact = contact.include?(input)
+        #  puts @@contacts.delete(del_contact)
+
+      #if name.include?(input) == true then puts "test"
+    #end
+    #contact |k, v|
+    #contact = contact.inspect
+    #if contact.include?(input) == true
+    #puts contact.delete(input)
+    #  puts contact.pop
+    #end
+
+  #end
+
 
   def display_all_contacts
 
@@ -151,12 +174,20 @@ end
   end
 
   def search_by_attribute
-    puts "k:"
-    k = gets.chomp
-    puts "v:"
-    v = gets.chomp
-    return Contact.find_by(k,v)
-    puts @contact
+    
+    puts Contact.find_by
+  #  puts "Search by name, email or note:"
+  #  input = gets.to_i
+  #  all_info = @@contacts.fetch(input + 1)
+  #  puts all_info.inspect
+
+
+    #puts "k:"
+    #k = gets.chomp
+    #puts "v:"
+    #3v = gets.chomp
+    #return Contact.find_by(k,v)
+    #puts @contact
   end
   def main_menu
     while true

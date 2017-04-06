@@ -13,12 +13,13 @@ class Contact
     @@id += 1
   end
 
-
   def self.create(first_name, last_name, email, note = 'N/A')
       new_contact = new(first_name, last_name, email, note)
       @@contacts << new_contact
       return new_contact
   end
+end
+
 
 
   def self.all
@@ -32,7 +33,7 @@ class Contact
       if contact == @id
         return contact.to_s
       end
-  end
+    end
   end
   def update (note, v)
     @note = v
@@ -53,7 +54,6 @@ class Contact
         return contact
       else
         return 0
-      end
       end
     end
 
@@ -82,7 +82,7 @@ class Contact
 #puts me = Contact.new("Sam")
 
 end
-contact = Contact.new('Betty', 'Maker', 'bettymakes@gmail.com', 'Loves Pokemon')
+#contact = Contact.new('Betty', 'Maker', 'bettymakes@gmail.com', 'Loves Pokemon')
 # This method should allow you to specify
 # 1. which of the contact's attributes you want to update
 # 2. the new value for that attribute
